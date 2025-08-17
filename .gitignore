@@ -39,3 +39,14 @@ Thumbs.db
 */migrations/__pycache__/
 */migrations/*.pyc
 */migrations/*.pyo
+
+
+# Ignore Django migrations
+**/migrations/
+**/migrations/*.py[cod]
+
+# Ignore images and media
+portfolio/images/
+portfolio/section_icons/
+media/
+static/
