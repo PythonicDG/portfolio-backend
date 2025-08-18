@@ -3,7 +3,9 @@ from django.db import models
 class Menu(models.Model):
     title = models.CharField(max_length=100)
     order = models.IntegerField(default=0)
-
+    is_active = models.BooleanField(default = True)
+    is_button = models.BooleanField(default = False)
+    
     def __str__(self):
         return self.title
 
@@ -11,6 +13,7 @@ class SubMenu(models.Model):
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE, related_name='submenus')
     title = models.CharField(max_length=100)
     order = models.IntegerField(default=0)
+    is_active = models.BooleanField(default = True)
 
     def __str__(self):
         return f"{self.menu.title} -> {self.title}"
@@ -24,6 +27,7 @@ class Section(models.Model):
     menu = models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True, blank=True)
     submenu = models.ForeignKey(SubMenu, on_delete=models.SET_NULL, null=True, blank=True)
     order = models.IntegerField(default=0)
+    is_active = models.BooleanField(default = True)
 
     def __str__(self):
         return self.title
@@ -43,7 +47,20 @@ class SectionContent(models.Model):
     order = models.IntegerField(default=0)
     github_link = models.CharField(blank = True, null = True, max_length = 300)
     live_demo = models.CharField(blank = True, null = True, max_length = 300)
+    is_active = models.BooleanField(default = True)
 
 
     def __str__(self):
         return f"{self.section.title}"
+
+class ContactMessage(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    location = models.CharField(max_length=100, blank=True, null=True)
+    budget = models.CharField(max_length=100, blank=True, null=True)
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.subject}"

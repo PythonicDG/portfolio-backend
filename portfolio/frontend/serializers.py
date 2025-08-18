@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Menu, SubMenu, Section, SectionContent
-
+from .models import ContactMessage
 
 class SectionContentSerializer(serializers.ModelSerializer):
     project_type_display = serializers.CharField(source='get_project_type_display', read_only=True)
@@ -57,8 +57,15 @@ class MenuSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Menu
-        fields = ['id', 'title', 'order', 'submenus', 'sections']
+        fields = ['id', 'title', 'order', 'submenus', 'sections', 'is_button    ']
 
     def get_sections(self, obj):
         sections = Section.objects.filter(menu=obj, submenu__isnull=True).order_by('order')
         return SectionSerializer(sections, many=True).data
+
+
+
+class ContactMessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContactMessage
+        fields = ['id', 'name', 'email', 'location', 'budget', 'subject', 'message', 'created_at']
