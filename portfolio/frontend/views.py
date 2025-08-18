@@ -3,6 +3,7 @@ from .models import Menu, ContactMessage
 from .serializers import MenuSerializer, ContactMessageSerializer
 from django.core.mail import send_mail
 from django.conf import settings
+import threading
 
 class PortfolioContentView(generics.ListAPIView):
     queryset = Menu.objects.filter(is_active=True).order_by('order')
@@ -23,10 +24,14 @@ class ContactMessageCreateView(generics.CreateAPIView):
             f"Budget: {contact.budget}\n"
             f"Message:\n{contact.message}"
         )
-        send_mail(
-            subject,
-            message,
-            settings.DEFAULT_FROM_EMAIL,
-            ['dipakgaikwadmg@gmail.com'],  
-            fail_silently=False,
-        )
+
+        def send_contact_email():
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                ['dipakgaikwadmg@gmail.com'],
+                fail_silently=False,
+            )
+
+        threading.Thread(target=send_contact_email).start()
