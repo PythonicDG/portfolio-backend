@@ -28,12 +28,22 @@ class Section(models.Model):
     def __str__(self):
         return self.title
 
+
 class SectionContent(models.Model):
+    PROJECT_TYPE = [
+        ("web_development", "Web Development"),
+        ("app_development", "App Development"),
+        ("ai_microservices", "AI Microservices")
+    ]
     section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='contents')
-    content_title = models.TextField(blank=True, null=True)
-    content_description = models.TextField(blank = True, null = True)
-    content_icon = models.ImageField(upload_to='section_icons/', blank=True, null=True)
+    project_title = models.TextField(blank=True, null=True)
+    project_type = models.CharField(blank = True, null = True, max_length = 300, choices = PROJECT_TYPE)
+    project_description = models.TextField(blank = True, null = True)
+    project_icon = models.ImageField(upload_to='section_icons/', blank=True, null=True)
     order = models.IntegerField(default=0)
+    github_link = models.CharField(blank = True, null = True, max_length = 300)
+    live_demo = models.CharField(blank = True, null = True, max_length = 300)
+
 
     def __str__(self):
         return f"{self.section.title}"
