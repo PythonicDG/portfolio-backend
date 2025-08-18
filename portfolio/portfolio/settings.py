@@ -101,7 +101,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['portfolio-backend-j0cz.onrender.com', 'localhost', '127.0.0.1']
 
 import os
 
