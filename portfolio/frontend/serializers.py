@@ -57,7 +57,7 @@ class MenuSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Menu
-        fields = ['id', 'title', 'order', 'submenus', 'sections', 'is_button    ']
+        fields = ['id', 'title', 'order', 'submenus', 'sections', 'is_button']
 
     def get_sections(self, obj):
         sections = Section.objects.filter(menu=obj, submenu__isnull=True).order_by('order')
