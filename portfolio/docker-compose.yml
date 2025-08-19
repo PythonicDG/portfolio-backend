@@ -23,7 +23,7 @@ services:
       - .env.prod
     command: ["/bin/bash", "/app/start.sh"]
     expose:
-      - "8002"
+      - "8002:8002"
 
 volumes: 
   postgres_data:
