@@ -11,5 +11,5 @@ COPY . .
 
 RUN python manage.py collectstatic --noinput || true
 
-CMD ["hypercorn", "portfolio.asgi:application", "-b", "0.0.0.0:8001", "-w", "4"]
+CMD ["hypercorn", "portfolio.asgi:application", "-b", "0.0.0.0:8002", "-w", "4"]
 
