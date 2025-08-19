@@ -23,7 +23,7 @@ services:
       - .env.prod
     command: ["/bin/bash", "/app/start.sh"]
     expose:
-      - "8001"
+      - "8001:8001"
 
   nginx:
     image: nginx:stable-alpine
