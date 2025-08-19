@@ -5,7 +5,7 @@ from decouple import Config, Csv
 import os
 from dotenv import load_dotenv
 
-load_dotenv('.env.local')
+load_dotenv('.env.prod')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
