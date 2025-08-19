@@ -111,9 +111,6 @@ ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
 import os
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "frontend/build/static",
-]
 
 TEMPLATES[0]['DIRS'] = [BASE_DIR / 'frontend/build']
 
